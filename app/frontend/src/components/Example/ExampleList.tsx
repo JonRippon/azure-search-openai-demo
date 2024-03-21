@@ -4,8 +4,8 @@ import styles from "./Example.module.css";
 
 const DEFAULT_EXAMPLES: string[] = [
     "What articles of the Digital Operational Resilience Act do small enterprise need to comply with from chapter II  (Pillar 2)?",
-    "What happens article 5 of DORA?",
-    "What is DORA?"
+    "What criteria should be used to classify ICT-related incidents?",
+    "What should the digital operational resilience testing programme include?"
 ];
 
 const GPT4V_EXAMPLES: string[] = [
