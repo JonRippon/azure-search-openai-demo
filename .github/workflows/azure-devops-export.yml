@@ -33,6 +33,6 @@ jobs:
         ids=$(az boards query --org=$org --project=$project --id $queryId --query '[].id' -o tsv)
         for id in $ids
         do
-          fileName="workitems/$id.json"
+          fileName="data/$id.json"
           az boards work-item show --org=$org --id $id -o json --query $recordFormat > $fileName
         done
