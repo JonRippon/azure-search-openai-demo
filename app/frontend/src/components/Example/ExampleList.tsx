@@ -2,11 +2,7 @@ import { Example } from "./Example";
 
 import styles from "./Example.module.css";
 
-const DEFAULT_EXAMPLES: string[] = [
-    "What articles of the Digital Operational Resilience Act do small enterprise need to comply with from chapter II  (Pillar 2)?",
-    "What criteria should be used to classify ICT-related incidents?",
-    "What should the digital operational resilience testing programme include?"
-];
+const DEFAULT_EXAMPLES: string[] = ["What feature requests do you have?", "Who has the most tasks?", "What is the backlog?"];
 
 const GPT4V_EXAMPLES: string[] = [
     "Compare the impact of interest rates and GDP in financial markets.",
