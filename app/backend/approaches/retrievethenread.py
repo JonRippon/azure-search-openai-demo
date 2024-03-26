@@ -85,6 +85,8 @@ The Dora Act.pdf#page=38: identify key dependencies on ICT third-party service p
 
         use_semantic_captions = True if overrides.get("semantic_captions") and has_text else False
         top = overrides.get("top", 3)
+        minimum_search_score = overrides.get("minimum_search_score", 0.0)
+        minimum_reranker_score = overrides.get("minimum_reranker_score", 0.0)
         filter = self.build_filter(overrides, auth_claims)
         # If retrieval mode includes vectors, compute an embedding for the query
         vectors: list[VectorQuery] = []
@@ -94,7 +96,16 @@ The Dora Act.pdf#page=38: identify key dependencies on ICT third-party service p
         # Only keep the text query if the retrieval mode uses text, otherwise drop it
         query_text = q if has_text else None
 
-        results = await self.search(top, query_text, filter, vectors, use_semantic_ranker, use_semantic_captions)
+        results = await self.search(
+            top,
+            query_text,
+            filter,
+            vectors,
+            use_semantic_ranker,
+            use_semantic_captions,
+            minimum_search_score,
+            minimum_reranker_score,
+        )
 
         user_content = [q]
 
