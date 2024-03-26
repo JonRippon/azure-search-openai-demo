@@ -1,0 +1,38 @@
+name: Export Azure DevOps Boards
+
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: 'Azure DevOps Project'
+        required: true
+        default: 'SmartHotel'
+      id:
+        description: 'Query ID'
+        required: true
+        default: '2f0050b5-a532-442a-9621-f7d8ce3d6d87'
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to Azure DevOps
+      run: |
+        echo "${{ secrets.AZURE_DEVOPS_PAT }}" | az devops login --org ${{ secrets.AZURE_DEVOPS_ORG }}
+
+    - name: Run query and export work items
+      run: |
+        queryId="${{ github.event.inputs.id }}"
+        org="${{ secrets.AZURE_DEVOPS_ORG }}"
+        project="${{ github.event.inputs.project }}"
+        recordFormat='{Id:id,AreaPath:fields."System.AreaPath",AssignedTo:fields."System.AssignedTo".displayName,State:fields."System.State",CreatedDate:fields."System.CreatedDate",ChangedDate:fields."System.ChangedDate",Title:fields."System.Title",StateChangeDate:fields."Microsoft.VSTS.Common.StateChangeDate",ClosedDate:fields."Microsoft.VSTS.Common.ClosedDate",Categories:fields."Custom.Categories",Description:fields."System.Description",Tags:fields."System.Tags"}'
+        ids=$(az boards query --org=$org --project=$project --id $queryId --query '[].id' -o tsv)
+        for id in $ids
+        do
+          fileName="workitems/$id.json"
+          az boards work-item show --org=$org --id $id -o json --query $recordFormat > $fileName
+        done
