@@ -148,3 +148,6 @@ static/
 
 data/**/*.md5
 /data
+data/.DS_Store
+/data
+/workitems
