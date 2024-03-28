@@ -51,6 +51,7 @@ The Dora Act.pdf#page=38: identify key dependencies on ICT third-party service p
         chatgpt_deployment: Optional[str],  # Not needed for non-Azure OpenAI
         embedding_model: str,
         embedding_deployment: Optional[str],  # Not needed for non-Azure OpenAI or for retrieval_mode="text"
+        embedding_dimensions: int,
         sourcepage_field: str,
         content_field: str,
         query_language: str,
@@ -62,6 +63,7 @@ The Dora Act.pdf#page=38: identify key dependencies on ICT third-party service p
         self.auth_helper = auth_helper
         self.chatgpt_model = chatgpt_model
         self.embedding_model = embedding_model
+        self.embedding_dimensions = embedding_dimensions
         self.chatgpt_deployment = chatgpt_deployment
         self.embedding_deployment = embedding_deployment
         self.sourcepage_field = sourcepage_field
