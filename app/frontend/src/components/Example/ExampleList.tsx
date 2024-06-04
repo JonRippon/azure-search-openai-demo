@@ -5,7 +5,7 @@ import styles from "./Example.module.css";
 const DEFAULT_EXAMPLES: string[] = [
     "What are the differences in the documents provided?",
     "What versions do you have?",
-    "Can you write a combined version based on all the data?"
+    "Create a table showing each document and any differences?"
 ];
 
 const GPT4V_EXAMPLES: string[] = [
