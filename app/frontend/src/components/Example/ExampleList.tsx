@@ -3,8 +3,8 @@ import { Example } from "./Example";
 import styles from "./Example.module.css";
 
 const DEFAULT_EXAMPLES: string[] = [
-    "What are the differences in the documents provided?",
-    "What versions do you have?",
+    "Based on your data, detail each difference between each of the documents in a html table",
+    "What versions of the document do you have?",
     "Create a table showing each document and any differences?"
 ];
 
