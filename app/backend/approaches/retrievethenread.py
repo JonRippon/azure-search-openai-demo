@@ -28,15 +28,13 @@ class RetrieveThenReadApproach(Approach):
 
     # shots/sample conversation
     question = """
-'What is the deductible for the employee plan for a visit to Overlake in Bellevue?'
+'What are the differences in the supplied files in HTML table format?'
 
 Sources:
-info1.txt: deductibles depend on whether you are in-network or out-of-network. In-network deductibles are $500 for employee and $1000 for family. Out-of-network deductibles are $1000 for employee and $2000 for family.
-info2.pdf: Overlake is in-network for the employee plan.
-info3.pdf: Overlake is the name of the area that includes a park and ride near Bellevue.
-info4.pdf: In-network institutions include Overlake, Swedish and others in the region
+PH SOP Site 1.docx: Is a Analytical Procedure for pH Testing.
+PH SOP Site 2.docx: Is a Analytical Procedure for pH Testing.
 """
-    answer = "In-network deductibles are $500 for employee and $1000 for family [info1.txt] and Overlake is in-network for the employee plan [info2.pdf][info4.pdf]."
+    answer = "Is using verions 3 of the document and contains different scope and purpose [PH SOP Site 1.docx] and [PH SOP Site 3.docx] not contain Step 5.5.1 and 5.5.2 [PH SOP Site 3.docx][PH SOP Site 4.docx]."
 
     def __init__(
         self,
