@@ -21,8 +21,11 @@ export type ChatAppRequestOverrides = {
     semantic_ranker?: boolean;
     semantic_captions?: boolean;
     exclude_category?: string;
+    seed?: number;
     top?: number;
     temperature?: number;
+    minimum_search_score?: number;
+    minimum_reranker_score?: number;
     prompt_template?: string;
     prompt_template_prefix?: string;
     prompt_template_suffix?: string;
@@ -32,6 +35,7 @@ export type ChatAppRequestOverrides = {
     use_gpt4v?: boolean;
     gpt4v_input?: GPT4VInput;
     vector_fields: VectorFieldOptions[];
+    language: string;
 };
 
 export type ResponseMessage = {
@@ -51,20 +55,19 @@ export type ResponseContext = {
     thoughts: Thoughts[];
 };
 
-export type ResponseChoice = {
-    index: number;
+export type ChatAppResponseOrError = {
     message: ResponseMessage;
+    delta: ResponseMessage;
     context: ResponseContext;
     session_state: any;
-};
-
-export type ChatAppResponseOrError = {
-    choices?: ResponseChoice[];
     error?: string;
 };
 
 export type ChatAppResponse = {
-    choices: ResponseChoice[];
+    message: ResponseMessage;
+    delta: ResponseMessage;
+    context: ResponseContext;
+    session_state: any;
 };
 
 export type ChatAppRequestContext = {
@@ -74,7 +77,6 @@ export type ChatAppRequestContext = {
 export type ChatAppRequest = {
     messages: ResponseMessage[];
     context?: ChatAppRequestContext;
-    stream?: boolean;
     session_state: any;
 };
 
@@ -82,4 +84,21 @@ export type Config = {
     showGPT4VOptions: boolean;
     showSemanticRankerOption: boolean;
     showVectorOption: boolean;
+    showUserUpload: boolean;
+    showLanguagePicker: boolean;
+    showSpeechInput: boolean;
+    showSpeechOutputBrowser: boolean;
+    showSpeechOutputAzure: boolean;
 };
+
+export type SimpleAPIResponse = {
+    message?: string;
+};
+
+export interface SpeechConfig {
+    speechUrls: (string | null)[];
+    setSpeechUrls: (urls: (string | null)[]) => void;
+    audio: HTMLAudioElement;
+    isPlaying: boolean;
+    setIsPlaying: (isPlaying: boolean) => void;
+}
